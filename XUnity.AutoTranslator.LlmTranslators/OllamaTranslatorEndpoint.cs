@@ -11,7 +11,9 @@ public class OllamaTranslatorEndpoint : HttpEndpoint
     public override string Id => "OllamaTranslate";
     public override string FriendlyName => "Ollama Translate";
     public override int MaxTranslationsPerRequest => 1;
-    public override int MaxConcurrency => 15;
+
+    // Careful not to melt machines
+    public override int MaxConcurrency => 5;
    
     private LlmConfig _config = new();
 
