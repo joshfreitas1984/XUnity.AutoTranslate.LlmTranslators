@@ -50,7 +50,7 @@ Please note the prompt is what actually tells ChatGPT what to translate. Some th
 - Ensure you add context to the prompt for the game such as 'Wuxia', 'Sengoku Jidai', 'Xanxia', 'Eroge'. 
 - Make sure you tell it how to translate names whether you want literal translation or keep the original names
 
-A test project is included with the project. The `PromptTests`((./XUnity.AutoTranslator.LlmTranslators.Tests/PromptTests.cs) will let you easily change your prompt based on your model and compare outputs to some ChatGPT4o pretranslated values. These are a good baseline to compare your prompts or other models to, most cases will show you where the model will lose the plot and hallucinate.
+A test project is included with the project. The [PromptTests](./XUnity.AutoTranslator.LlmTranslators.Tests/PromptTests.cs) will let you easily change your prompt based on your model and compare outputs to some ChatGPT4o pretranslated values. These are a good baseline to compare your prompts or other models to, most cases will show you where the model will lose the plot and hallucinate.
 
 ## Packages
 
