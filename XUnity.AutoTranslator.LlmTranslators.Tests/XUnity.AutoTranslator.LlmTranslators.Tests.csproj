@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XUnity.AutoTranslator.LlmTranslators\XUnity.AutoTranslator.LlmTranslators.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="XUnity.AutoTranslator.Plugin.Core">
+      <HintPath>..\libs\XUnity.AutoTranslator.Plugin.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="XUnity.AutoTranslator.Plugin.ExtProtocol">
+      <HintPath>..\libs\XUnity.AutoTranslator.Plugin.ExtProtocol.dll</HintPath>
+    </Reference>
+    <Reference Include="XUnity.Common">
+      <HintPath>..\libs\XUnity.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

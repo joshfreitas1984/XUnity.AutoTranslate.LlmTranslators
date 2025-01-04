@@ -1,0 +1,54 @@
+﻿默认操作配置（键鼠）
+=Default Operation Configuration (Keyboard and Mouse)
+右
+=Right
+脸饰
+=Face Scar
+前发
+=Front Hair
+服装
+=Clothing
+境界:
+=Realm:
+空档
+=Void
+栖身奉道
+=Live According to the Tao
+洞隐烛微
+=The Candle Flickers in the Hidden Cave
+举重若轻，神静气止，你的真气上限额外增加（1），但移动速度降低3%。\n消耗天赋点:<color\=#7b6952>1</color>
+=Lifting As If Light, Calm and Composed, your maximum Qi increases by an additional (1), but movement speed decreases by 3%.\nTalent Point Cost:<color\=#7b6952>1</color>
+气窍通明，可称慧体，你天生七脉通达，内功攻击提升5%。\n消耗天赋点:<color\=#7b6952>2</color>
+=Your energy channels are clear, which can be called an enlightened body. You are born with seven meridians unblocked, increasing your internal power attacks by 5%.\nTalent Points Cost:<color\=#7b6952>2</color>
+单手轻刃:
+=One-Handed Sword:
+软鞭:
+=Soft Whip:
+4个
+=40 Years
+10月
+=10 Months
+14年
+=14 Years
+屈星晖
+=Qu Xinghui
+巴星纬
+=Ba Xingwei
+惠学
+=Hui Xue
+白文和
+=Bai Wenhe
+不待你继续问话，白文和便伸手扯了你的衣袖，满面喜色。
+=Before you could ask further, Bai Wenhe reached out and tugged at your sleeve, his face brimming with joy.
+无奈摇头，迈步跟上。
+=With a resigned shake of the head, they stepped forward to follow.
+既你出手帮忙，那从此便是“催命三侠”的朋友，走走走，我带你去见另外两……两侠！咱们今日可得好好喝上一杯。
+=Since you've lent a hand, you are now a friend of the "Three Deathly Heroes." Come, come, I'll take you to meet the other two... two heroes! Today, we must drink heartily.
+耿心思\n【捕快】\r
+=Geng Xinsi  \n[Constable]\r
+坚革饰铜，内嵌甲叶，行伍兵卒常佩。
+=Armor adorned with sturdy leather and bronze, embedded with scales, is commonly worn by soldiers in the ranks.
+0.6.1.1版本更新内容:\r\n\r\n【新增功能】\r\n1.重要功能：【同武器的武学混用】第一版现已上线，当前玩家可自由组合搭配同一武器下不同武学套路的主动招式，创造专属玩家自身的混合武学，且混合武学在应用时将获取相关武学已开启的全部被动与心决效果。\r\n2.玩家成功弹反时会播放慢镜头。\r\n\r\n【体验调优】\r\n1.修改部分开放世界随机事件的错误文本描述。\r\n2.优化调整书信类及其他类型开放世界随机事件的触发频次。\r\n3.调整战斗中的各类BUFF图标尺寸。
+=Version 0.6.1.1 Update:\n\n【New Features】\n1. Major Feature: 【Mixed Martial Arts with the Same Weapon】 The first edition is now live. Players can freely combine and match active moves from different martial arts styles under the same weapon, creating their own unique mixed martial arts. When applied, these mixed martial arts will gain all passive and heart decision effects from the relevant martial arts.\n2. Slow-motion will play when players successfully parry.\n\n【Experience Enhancements】\n1. Corrected erroneous text descriptions in some open-world random events.\n2. Optimized the trigger frequency of letter-type and other open-world random events.\n3. Adjusted the size of various BUFF icons in combat.
+“在下替顾家上下多谢娄捕头相助，不知娄捕头对此案可有头绪？”
+="In the humble name of the Gu family, I extend our gratitude to Constable Lou for your assistance. Might Constable Lou have any leads on this case?"

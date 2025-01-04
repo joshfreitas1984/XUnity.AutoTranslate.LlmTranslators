@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net45</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<PoKGameDir>C:\Program Files (x86)\Steam\steamapps\common\The road of Jianghu\daojianjianghulu_Data\Managed\Translators\</PoKGameDir>
+		<Xyzj2GameDir>G:\SteamLibrary\steamapps\common\下一站江湖Ⅱ\下一站江湖Ⅱ\下一站江湖Ⅱ_Data\Managed\Translators</Xyzj2GameDir>
+		<Configurations>Debug;Release</Configurations>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Reference Include="XUnity.AutoTranslator.Plugin.Core">
+			<HintPath>..\libs\XUnity.AutoTranslator.Plugin.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="XUnity.AutoTranslator.Plugin.ExtProtocol">
+			<HintPath>..\libs\XUnity.AutoTranslator.Plugin.ExtProtocol.dll</HintPath>
+		</Reference>
+		<Reference Include="XUnity.Common">
+			<HintPath>..\libs\XUnity.Common.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+ 
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="YamlDotNet" Version="4.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" PrivateAssets="All" />
+	</ItemGroup>
+
+	<Target Name="ILRepack" AfterTargets="Build" Condition="$(Configuration) == 'Release'">
+		<PropertyGroup>
+			<WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)</WorkingDirectory>
+		</PropertyGroup>
+		<ItemGroup>
+			<InputAssemblies Include="YamlDotNet.dll" />
+		</ItemGroup>
+		
+		<!-- Log message for merging assemblies -->
+		<Message Text="MERGING: @(InputAssemblies->'%(Filename)') into $(OutputAssembly)" Importance="High" />
+
+		<!-- ILRepack task to merge assemblies -->
+		<ILRepack OutputType="$(OutputType)" MainAssembly="$(AssemblyName).dll" OutputAssembly="$(AssemblyName).dll" InputAssemblies="@(InputAssemblies)" InternalizeExcludeAssemblies="@(InternalizeExcludeAssemblies)" WorkingDirectory="$(WorkingDirectory)" />
+	</Target>
+
+	<Target Name="PostBuild" AfterTargets="ILRepack" Condition="$(Configuration) == 'Release'">
+		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(PoKGameDir)&quot;" />
+		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(Xyzj2GameDir)&quot;" />
+	</Target>
+
+</Project>

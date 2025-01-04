@@ -1,0 +1,9 @@
+ApiKey: Replace Me if needed
+ApiKeyRequired: false
+Url: http://localhost:11434/api/chat
+Model: llama3.1
+SystemPrompt: >-
+  Please Adjust my Prompt
+
+
+  I can be multi line
