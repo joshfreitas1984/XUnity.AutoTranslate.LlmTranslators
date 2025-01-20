@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using XUnity.AutoTranslator.LlmTranslators.Config;
@@ -30,6 +31,9 @@ namespace Tests
             //Setup
             var client = new HttpClient();
             var outputs = new string[raws.Count];
+
+            if (config.ApiKeyRequired)
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", config.ApiKey);
 
             //Translate
             await Parallel.ForAsync(0, raws.Count, async (i, _) =>

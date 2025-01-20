@@ -35,7 +35,7 @@ public class OllamaTranslatorEndpoint : HttpEndpoint
     {
         var requestData = GetRequestData(_config.SystemPrompt, _config.Model, context.UntranslatedTexts);
 
-        var request = new XUnityWebRequest("POST", _config.Url, requestData);        
+        var request = new XUnityWebRequest("POST", _config.Url, requestData);  
         request.Headers[HttpRequestHeader.ContentType] = "application/json";
 
         if (_config.ApiKeyRequired)
@@ -82,7 +82,7 @@ public class OllamaTranslatorEndpoint : HttpEndpoint
 
     private static string GetTranslatedText(JObject jsonResponse, int index)
     {
-        var rawString = jsonResponse["choices"]?[index]?["message"]?["content"]?.ToString() ?? string.Empty;
+        var rawString = jsonResponse["message"]?["content"]?.ToString() ?? string.Empty;
         return rawString.Trim();
     }
 }

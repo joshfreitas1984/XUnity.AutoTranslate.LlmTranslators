@@ -366,3 +366,6 @@ FodyWeavers.xsd
 
 # Packages
 !packages/*
+
+# Private
+**/PrivateConfig/**
