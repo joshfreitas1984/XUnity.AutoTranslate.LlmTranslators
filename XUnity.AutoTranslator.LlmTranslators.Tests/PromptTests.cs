@@ -11,7 +11,7 @@ namespace Tests
         [Fact]
         public async Task OllamaPromptsTester()
         {
-            var config = Configuration.GetConfiguration($"{Assembly.GetExecutingAssembly().Location}/../../../../TestConfig/Ollama.yaml");
+            var config = Configuration.GetConfiguration($"{Assembly.GetExecutingAssembly().Location}/../../../../PrivateConfig/Ollama.yaml");
             const string outputFile = "../../../TestOutput/Outputs.txt";
             const string inputFile = "../../../Lines.txt";
 
