@@ -15,14 +15,14 @@ Expected:
 Raw:
 脸饰
 Translated:
-Facial makeup or mask.
+Mask decoration or face ornament.
 Expected:
 =Face Scar
 
 Raw:
 前发
 Translated:
-Advance first (or "Take the initiative").
+"Lead forward" or "advance" (in a strategic or pioneering sense). This term often implies taking initiative, leading the way in action or thought.
 Expected:
 =Front Hair
 
@@ -36,58 +36,59 @@ Expected:
 Raw:
 境界:
 Translated:
-Realm:
+Realm or level (of spiritual, martial, or internal development).
 Expected:
 =Realm:
 
 Raw:
 空档
 Translated:
-Gongdang (空档)
+Time gap or interval.
 Expected:
 =Void
 
 Raw:
 栖身奉道
 Translated:
-Devoting oneself to the Way.
+Dedicate oneself to following a path or doctrine.
 Expected:
 =Live According to the Tao
 
 Raw:
 洞隐烛微
 Translated:
-Dim light flickers in the cave.
+A faint light flickers in the hidden cavern.
 Expected:
 =The Candle Flickers in the Hidden Cave
 
 Raw:
 举重若轻，神静气止，你的真气上限额外增加（1），但移动速度降低3%。\n消耗天赋点:<color\=#7b6952>1</color>
 Translated:
-Lift with ease and tranquility, maintaining a serene spirit. Your maximum Qi is additionally increased by (1), but your movement speed decreases by 3%.
+Lift as if it were light, maintain a calm mind and still breath; your maximum internal energy is increased by 1, but your movement speed decreases by 3%. 
 
-Talent points consumed: <color\=#7b6952>1</color>
+Consumes talent points: <color=#7b6952>1</color>
 Expected:
 =Lifting As If Light, Calm and Composed, your maximum Qi increases by an additional (1), but movement speed decreases by 3%.\nTalent Point Cost:<color\=#7b6952>1</color>
 
 Raw:
 气窍通明，可称慧体，你天生七脉通达，内功攻击提升5%。\n消耗天赋点:<color\=#7b6952>2</color>
 Translated:
-Qiāoqiào tōngmíng, kě chēng huìtǐ; you tiānsēng qī mò tōngdá, nèigōng gōngjī tígā 5%.\nXiāoshī tài fù diǎn: <color\=#7b6952>2</color>
+Chakra paths clear and bright, known as the Enlightened Body; you are naturally gifted with seven clear meridians, increasing internal attack power by 5%.  
+Talent points consumed: <color=#7b6952>2</color>
 Expected:
 =Your energy channels are clear, which can be called an enlightened body. You are born with seven meridians unblocked, increasing your internal power attacks by 5%.\nTalent Points Cost:<color\=#7b6952>2</color>
 
 Raw:
 单手轻刃:
 Translated:
-Single-handed light blade.
+Single-Handed Light Blade.
 Expected:
 =One-Handed Sword:
 
 Raw:
 软鞭:
 Translated:
-Ruo Bian (软鞭)
+Ruanbian: Soft Whip or Gentle Whip. This term often refers to a type of weapon used in martial arts, characterized by its flexibility and lightness. It's typically made from materials like silk, rope, or leather, allowing for quick and fluid movements. In traditional contexts, it is known for its ability to deliver precise strikes without causing severe injury.
 Expected:
 =Soft Whip:
 
@@ -122,80 +123,80 @@ Expected:
 Raw:
 巴星纬
 Translated:
-Bā Xīngwěi (霸星纬)
+Ba Xingwei
 Expected:
 =Ba Xingwei
 
 Raw:
 惠学
 Translated:
-Huì Xué (惠學)
+Benevolent Scholar
 Expected:
 =Hui Xue
 
 Raw:
 白文和
 Translated:
-White text and
+Pái Wén hé.
 Expected:
 =Bai Wenhe
 
 Raw:
 不待你继续问话，白文和便伸手扯了你的衣袖，满面喜色。
 Translated:
-Without waiting for you to continue speaking, Bai Wen (Bái Wén) extended their hand and pulled on your sleeve with a beaming smile.
+Before you could continue speaking, Bai Wen and Bie reached out to pull your sleeve with a beaming smile.
 Expected:
 =Before you could ask further, Bai Wenhe reached out and tugged at your sleeve, his face brimming with joy.
 
 Raw:
 无奈摇头，迈步跟上。
 Translated:
-Reluctantly shaking their head, they followed along.
+Reluctantly shaking their head, they quickened their pace to catch up.
 Expected:
 =With a resigned shake of the head, they stepped forward to follow.
 
 Raw:
 既你出手帮忙，那从此便是“催命三侠”的朋友，走走走，我带你去见另外两……两侠！咱们今日可得好好喝上一杯。
 Translated:
-Since you've stepped in to help, you're now a friend of the "Three Fated Assassins." Come with me; I'll take you to meet the other two... assassins! We must drink together and celebrate today.
+Since you've stepped in to help, consider yourself now a friend of the "Cui Ming San Xia." Come on, let me take you to meet the other two… Let's make sure we have a good drink together today.
 Expected:
 =Since you've lent a hand, you are now a friend of the "Three Deathly Heroes." Come, come, I'll take you to meet the other two... two heroes! Today, we must drink heartily.
 
 Raw:
 耿心思\n【捕快】\r
 Translated:
-Gěng Xīnsī  
-[Bǔkuài]
+Geng Xin Si  
+【Chase Officer】
 Expected:
 =Geng Xinsi  \n[Constable]\r
 
 Raw:
 坚革饰铜，内嵌甲叶，行伍兵卒常佩。
 Translated:
-Bronze armor plates adorned with scales of iron, commonly worn by rank-and-file soldiers.
+Wearing a copper cuirass adorned with interlocking jade leaves, commonly worn by foot soldiers in the ranks.
 Expected:
 =Armor adorned with sturdy leather and bronze, embedded with scales, is commonly worn by soldiers in the ranks.
 
 Raw:
 0.6.1.1版本更新内容:\r\n\r\n【新增功能】\r\n1.重要功能：【同武器的武学混用】第一版现已上线，当前玩家可自由组合搭配同一武器下不同武学套路的主动招式，创造专属玩家自身的混合武学，且混合武学在应用时将获取相关武学已开启的全部被动与心决效果。\r\n2.玩家成功弹反时会播放慢镜头。\r\n\r\n【体验调优】\r\n1.修改部分开放世界随机事件的错误文本描述。\r\n2.优化调整书信类及其他类型开放世界随机事件的触发频次。\r\n3.调整战斗中的各类BUFF图标尺寸。
 Translated:
-Version 0.6.1.1 Update Content:
+0.6.1.1 Update Content:
 
 【New Features】
-1. Important Function: The first version of 【Mixing Martial Arts within the Same Weapon】is now live, allowing players to freely combine different martial arts forms and active techniques under the same weapon to create their unique hybrid martial art. When applied, this mixed martial art will acquire all passive effects and heart seals associated with each involved martial art.
-2. A slow-motion replay will be played when a player successfully parries.
+1. Important Function: "Mixing Martial Arts on the Same Weapon" has been released in its first version. Players can now freely combine different martial arts techniques from the same weapon to create unique hybrid martial arts tailored for themselves. When applied, these mixed martial arts will obtain all passive and resolution effects unlocked by the respective martial arts.
+2. Slow-motion effect will be triggered when players successfully parry an attack.
 
 【Experience Optimization】
 1. Corrected erroneous text descriptions in some open-world random events.
-2. Adjusted the trigger frequency for letter-based and other types of open-world random events.
-3. Adjusted the size of various buff icons during combat.
+2. Adjusted trigger frequency for letter-type and other types of open-world random events.
+3. Resized various BUFF icon sizes during battles.
 Expected:
 =Version 0.6.1.1 Update:\n\n【New Features】\n1. Major Feature: 【Mixed Martial Arts with the Same Weapon】 The first edition is now live. Players can freely combine and match active moves from different martial arts styles under the same weapon, creating their own unique mixed martial arts. When applied, these mixed martial arts will gain all passive and heart decision effects from the relevant martial arts.\n2. Slow-motion will play when players successfully parry.\n\n【Experience Enhancements】\n1. Corrected erroneous text descriptions in some open-world random events.\n2. Optimized the trigger frequency of letter-type and other open-world random events.\n3. Adjusted the size of various BUFF icons in combat.
 
 Raw:
 “在下替顾家上下多谢娄捕头相助，不知娄捕头对此案可有头绪？”
 Translated:
-"I am speaking on behalf of the Gu family to express our deepest gratitude for Master Lou, the Chief Investigator's assistance. Do you have any leads on this case?"
+"I humbly thank Brother Lou for assisting the Gu family, Master. Do you have any leads on this case?"
 Expected:
 ="In the humble name of the Gu family, I extend our gratitude to Constable Lou for your assistance. Might Constable Lou have any leads on this case?"
 

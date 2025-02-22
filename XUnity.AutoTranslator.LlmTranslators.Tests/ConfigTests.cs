@@ -1,16 +1,17 @@
-﻿using System.Reflection;
-using XUnity.AutoTranslator.LlmTranslators.Config;
+﻿using XUnity.AutoTranslator.LlmTranslators.Config;
 
-namespace XUnity.AutoTranslator.LlmTranslators.Tests
+namespace XUnity.AutoTranslator.LlmTranslators.Tests;
+
+public class ConfigTests
 {
-    public class ConfigTests
-    {
-        [Fact]
-        public void TestDefaultConfig()
-        {
-            var config = Configuration.GetConfiguration($"{Assembly.GetExecutingAssembly().Location}/../../../../TestOutput/Ollama2.yaml");
+    const string workingDirectory = "../../../";
+    const string sampleDirectory = $"{workingDirectory}/../XUnity.AutoTranslator.LlmTranslators/SampleConfig/";
 
-            Assert.True(config.SystemPrompt!.Split("\n").Length > 1);
-        }
+    [Fact]
+    public void TestDefaultConfig()
+    {
+        var config = Configuration.GetConfiguration($"{sampleDirectory}/OpenAi.yaml");
+
+        Assert.True(config.SystemPrompt!.Split("\n").Length > 1);
     }
 }

@@ -369,3 +369,4 @@ FodyWeavers.xsd
 
 # Private
 **/PrivateConfig/**
+**/TestOutput/**

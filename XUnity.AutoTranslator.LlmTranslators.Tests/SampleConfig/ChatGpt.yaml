@@ -1,6 +1,0 @@
-﻿ApiKey: "Change me"
-ApiKeyRequired: true
-Url: "https://api.openai.com/v1/chat/completions"
-Model: "gpt-4o"
-SystemPrompt: >-
-  Translate Simplified Chinese into concise English with a Wuxia RPG tone. Preserve context, structure, and meaning. Keep special characters (e.g., HTML) intact. Incorporate genre-specific terms from Wuxia, Xianxia, and Chinese martial arts (e.g., qi, sects, cultivation) for authenticity. Use Pinyin for names, except for titles translated into traditional English forms (e.g., Lord, Master). Translate location terms descriptively (e.g., Fort) while retaining proper names in Pinyin. Use gender-neutral terms except when gender is specified. Refine phrasing for readability without altering intent. Maintain natural capitalization for names, titles, and stylistic elements.

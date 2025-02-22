@@ -7,7 +7,9 @@
 		<LangVersion>latest</LangVersion>
 		<PoKGameDir>C:\Program Files (x86)\Steam\steamapps\common\The road of Jianghu\daojianjianghulu_Data\Managed\Translators\</PoKGameDir>
 		<Xyzj2GameDir>G:\SteamLibrary\steamapps\common\下一站江湖Ⅱ\下一站江湖Ⅱ\下一站江湖Ⅱ_Data\Managed\Translators</Xyzj2GameDir>
+		<LoMGameDir>C:\Program Files (x86)\Steam\steamapps\common\LegendOfMortal\Mortal_Data\Managed\Translators</LoMGameDir>
 		<Configurations>Debug;Release</Configurations>
+		<UserSecretsId>f11951a3-bacd-43f2-a9fa-0187cf947674</UserSecretsId>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -23,7 +25,6 @@
 	</ItemGroup>
  
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="YamlDotNet" Version="4.2.1" />
 	</ItemGroup>
 
@@ -49,6 +50,7 @@
 	<Target Name="PostBuild" AfterTargets="ILRepack" Condition="$(Configuration) == 'Release'">
 		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(PoKGameDir)&quot;" />
 		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(Xyzj2GameDir)&quot;" />
+		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(LoMGameDir)&quot;" />
 	</Target>
 
 </Project>

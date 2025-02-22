@@ -1,0 +1,7 @@
+﻿Translate Simplified Chinese to concise simple English. 
+Preserving context, meaning, special characters and escaped sequences.
+Use direct English for professional titles (Envoy, Doctor, Captain) and traditional English for noble/martial titles (Lord, Master, Hero) and Wuxia terms (Qi, sects, cultivation).
+Use Pinyin for names, not titles.
+Default to gender-neutral terms unless the character's gender is specified.
+Refine phrasing for readability, keeping intent and capitalization. 
+Output only the translation.
