@@ -8,6 +8,7 @@
 		<PoKGameDir>C:\Program Files (x86)\Steam\steamapps\common\The road of Jianghu\daojianjianghulu_Data\Managed\Translators\</PoKGameDir>
 		<Xyzj2GameDir>G:\SteamLibrary\steamapps\common\下一站江湖Ⅱ\下一站江湖Ⅱ\下一站江湖Ⅱ_Data\Managed\Translators</Xyzj2GameDir>
 		<LoMGameDir>C:\Program Files (x86)\Steam\steamapps\common\LegendOfMortal\Mortal_Data\Managed\Translators</LoMGameDir>
+		<BaseFolder>\..\..\..\</BaseFolder>
 		<Configurations>Debug;Release</Configurations>
 		<UserSecretsId>f11951a3-bacd-43f2-a9fa-0187cf947674</UserSecretsId>
 	</PropertyGroup>
@@ -51,6 +52,9 @@
 		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(PoKGameDir)&quot;" />
 		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(Xyzj2GameDir)&quot;" />
 		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(LoMGameDir)&quot;" />
+
+		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(TargetDir)$(BaseFolder)\Release&quot;" />
+		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(BaseFolder)\SampleConfig&quot; &quot;$(TargetDir)$(BaseFolder)\Release&quot;" />
 	</Target>
 
 </Project>
