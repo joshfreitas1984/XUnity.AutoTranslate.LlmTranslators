@@ -1,5 +1,6 @@
 ﻿using SimpleJSON;
 using System.Text;
+using System.Text.RegularExpressions;
 using XUnity.AutoTranslator.LlmTranslators.Config;
 
 namespace XUnity.AutoTranslator.LlmTranslators.Behavior;
@@ -86,10 +87,9 @@ public static class BaseEndpointBehavior
         //Take out wide quotes
         result = result
             .Replace("’", "'")
-            .Replace("‘", "'")
-            .Replace("\\\"", "\"")
-            .Replace(@"\\n", @"\n")
-            .Replace(@"\\r", @"\r");
+            .Replace("‘", "'");
+
+        result = Regex.Unescape(result);
 
         //Make sure first character is upper case
         if (Char.IsLower(result[0]) && raw != result)
