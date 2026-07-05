@@ -4,6 +4,8 @@ LLM-backed translator endpoints for [XUnity.AutoTranslator](https://github.com/b
 
 This plugin adds OpenAI-compatible, Ollama, and LM Studio chat-completion translators for games that use XUnity.AutoTranslator. It is designed for prompt-driven game translation, glossary-assisted terminology control, and higher request concurrency than the built-in `Custom` endpoint.
 
+한국어 빌드 및 YAML 작성 예시는 [docs/BUILD_AND_YAML_EXAMPLES.ko.md](docs/BUILD_AND_YAML_EXAMPLES.ko.md)를 참고하세요.
+
 ## Supported Endpoints
 
 | Endpoint | Service ID | Use case |

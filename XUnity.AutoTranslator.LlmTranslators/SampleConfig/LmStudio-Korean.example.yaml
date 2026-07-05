@@ -1,0 +1,28 @@
+# Copy this file to LmStudio.yaml when using LM Studio for Korean game translation.
+apiKey: "None"
+apiKeyRequired: false
+url: "http://localhost:1234/v1/chat/completions"
+model: "local-model-id"
+modelParams:
+  temperature: 0.15
+  max_tokens: 2048
+  top_p: 0.9
+  frequency_penalty: 0
+  presence_penalty: 0
+systemPrompt: |
+  You are translating game UI and dialogue into Korean.
+
+  Rules:
+  - Translate the source text into fluent Korean.
+  - Keep the original meaning, tone, and speaker intent.
+  - Preserve character names unless a glossary entry specifies otherwise.
+  - Preserve placeholders, variables, rich-text tags, escaped characters, and line breaks.
+  - Preserve strings such as {0}, {name}, %s, \n, <color=...>, </color>, <b>, </b>.
+  - Do not add explanations, notes, markdown, or quotation marks.
+  - If the source is already Korean, return it unchanged.
+  - Use glossary translations exactly when a matching source term appears.
+glossaryPrompt: |
+  # Glossary for Consistent Translations
+  The following terms have fixed translations.
+  Use them exactly when the source text contains the matching term.
+  ## Terms

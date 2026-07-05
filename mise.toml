@@ -1,0 +1,16 @@
+[tools]
+dotnet = "9"
+
+[tasks.restore]
+description = "Restore NuGet packages for the solution"
+run = "dotnet restore XUnity.AutoTranslate.LlmTranslators.sln"
+
+[tasks.build]
+description = "Build the translator plugin in Release mode"
+run = "dotnet build XUnity.AutoTranslate.LlmTranslators.sln -c Release"
+depends = ["restore"]
+
+[tasks.test]
+description = "Run non-live tests, excluding PromptTests that may call real LLM endpoints"
+run = "dotnet test XUnity.AutoTranslate.LlmTranslators.sln -c Release --no-build --filter \"FullyQualifiedName!~PromptTests\""
+depends = ["build"]
