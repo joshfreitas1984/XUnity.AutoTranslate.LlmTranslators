@@ -20,6 +20,7 @@
     <!-- Link shared source instead of ProjectReference to keep net9 tests warning-free while the plugin stays net45 for Unity. -->
     <Compile Include="..\XUnity.AutoTranslator.LlmTranslators\Behavior\*.cs" Link="Behavior\%(Filename)%(Extension)" />
     <Compile Include="..\XUnity.AutoTranslator.LlmTranslators\Config\*.cs" Link="Config\%(Filename)%(Extension)" />
+    <Compile Include="..\XUnity.AutoTranslator.LlmTranslators\LmStudioTranslatorEndpoint.cs" Link="Endpoints\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>

@@ -19,10 +19,9 @@ public class LmStudioTranslatorEndpoint : HttpEndpoint
 
     public override void Initialize(IInitializationContext context)
     {
-        string folder = Configuration.CalculateConfigFolder();
+        string folder = Configuration.CalculateConfigFolder(context.TranslatorDirectory);
         var file = Path.Combine(folder, "LmStudio.yaml");
         _config = Configuration.GetConfiguration(file);
-        Configuration.LoadGlossary(_config, "LmStudio-Glossary.yaml");
 
         // Remove artificial delays
         context.SetTranslationDelay(0.1f);

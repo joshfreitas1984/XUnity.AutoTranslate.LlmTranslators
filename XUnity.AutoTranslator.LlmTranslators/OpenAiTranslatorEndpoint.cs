@@ -17,10 +17,9 @@ public class OpenAiTranslatorEndpoint : HttpEndpoint
 
     public override void Initialize(IInitializationContext context)
     {
-        string folder = Configuration.CalculateConfigFolder();
+        string folder = Configuration.CalculateConfigFolder(context.TranslatorDirectory);
         var file = Path.Combine(folder, "OpenAi.yaml");
         _config = Configuration.GetConfiguration(file);
-        Configuration.LoadGlossary(_config, "OpenAi-Glossary.yaml");
 
         // Remove artificial delays
         context.SetTranslationDelay(0.1f);
