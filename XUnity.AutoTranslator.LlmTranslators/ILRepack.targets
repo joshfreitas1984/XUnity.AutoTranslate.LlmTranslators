@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="ILRepacker" AfterTargets="Build" Condition="$(Configuration) == 'Release'">
+		<ItemGroup>
+			<InputAssemblies Include="$(TargetPath)" />
+			<InputAssemblies Include="$(TargetDir)YamlDotNet.dll" />
+		</ItemGroup>
+
+		<Message Text="MERGING: YamlDotNet into $(TargetFileName)" Importance="High" />
+
+		<ILRepack
+			Internalize="true"
+			InputAssemblies="@(InputAssemblies)"
+			OutputFile="$(TargetPath)"
+			TargetKind="Dll" />
+	</Target>
+</Project>

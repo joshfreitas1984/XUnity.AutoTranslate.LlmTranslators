@@ -1,0 +1,19 @@
+# Copy this file to LmStudio-Glossary.yaml when using LM Studio glossary terms.
+- raw: 先輩
+  result: 선배
+  transliteration: senpai
+  context: Character relationship title
+  checkForHallucination: true
+  checkForMistranslation: true
+
+- raw: 魔王
+  result: 마왕
+  context: Fantasy title
+  checkForHallucination: true
+  checkForMistranslation: true
+
+- raw: HP
+  result: HP
+  context: Game stat label; keep unchanged
+  checkForHallucination: true
+  checkForMistranslation: true

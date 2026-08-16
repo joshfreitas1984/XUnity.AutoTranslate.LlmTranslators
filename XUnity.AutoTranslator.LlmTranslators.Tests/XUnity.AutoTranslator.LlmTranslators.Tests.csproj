@@ -11,12 +11,16 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="YamlDotNet" Version="5.0.0" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\XUnity.AutoTranslator.LlmTranslators\XUnity.AutoTranslator.LlmTranslators.csproj" />
+    <!-- Link shared source instead of ProjectReference to keep net9 tests warning-free while the plugin stays net45 for Unity. -->
+    <Compile Include="..\XUnity.AutoTranslator.LlmTranslators\Behavior\*.cs" Link="Behavior\%(Filename)%(Extension)" />
+    <Compile Include="..\XUnity.AutoTranslator.LlmTranslators\Config\*.cs" Link="Config\%(Filename)%(Extension)" />
+    <Compile Include="..\XUnity.AutoTranslator.LlmTranslators\LmStudioTranslatorEndpoint.cs" Link="Endpoints\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>

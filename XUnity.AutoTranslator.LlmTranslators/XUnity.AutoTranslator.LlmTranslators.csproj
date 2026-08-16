@@ -5,10 +5,12 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PoKGameDir>C:\Program Files (x86)\Steam\steamapps\common\The road of Jianghu\daojianjianghulu_Data\Managed\Translators\</PoKGameDir>
 		<Xyzj2GameDir>G:\SteamLibrary\steamapps\common\下一站江湖Ⅱ\下一站江湖Ⅱ\下一站江湖Ⅱ_Data\Managed\Translators</Xyzj2GameDir>
 		<LoMGameDir>C:\Program Files (x86)\Steam\steamapps\common\LegendOfMortal\Mortal_Data\Managed\Translators</LoMGameDir>
 		<BaseFolder>\..\..\..\</BaseFolder>
+		<DeployToGameDirs>false</DeployToGameDirs>
 		<Configurations>Debug;Release</Configurations>
 		<UserSecretsId>f11951a3-bacd-43f2-a9fa-0187cf947674</UserSecretsId>
 	</PropertyGroup>
@@ -26,35 +28,32 @@
 	</ItemGroup>
  
 	<ItemGroup>
-		<PackageReference Include="YamlDotNet" Version="4.2.1" />
+		<PackageReference Include="YamlDotNet" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" PrivateAssets="All" />
+		<PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.45" PrivateAssets="All" />
 	</ItemGroup>
 
-	<Target Name="ILRepack" AfterTargets="Build" Condition="$(Configuration) == 'Release'">
+	<Target Name="PostBuild" AfterTargets="ILRepacker" Condition="$(Configuration) == 'Release'">
 		<PropertyGroup>
-			<WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)</WorkingDirectory>
+			<ReleaseFolder>$(MSBuildThisFileDirectory)..\Release\</ReleaseFolder>
+			<ReleaseTranslatorsFolder>$(ReleaseFolder)Translators\</ReleaseTranslatorsFolder>
+			<ReleaseSampleConfigFolder>$(ReleaseFolder)SampleConfig\</ReleaseSampleConfigFolder>
 		</PropertyGroup>
+
 		<ItemGroup>
-			<InputAssemblies Include="YamlDotNet.dll" />
+			<SampleConfigFiles Include="$(MSBuildThisFileDirectory)SampleConfig\**\*" />
 		</ItemGroup>
-		
-		<!-- Log message for merging assemblies -->
-		<Message Text="MERGING: @(InputAssemblies->'%(Filename)') into $(OutputAssembly)" Importance="High" />
 
-		<!-- ILRepack task to merge assemblies -->
-		<ILRepack OutputType="$(OutputType)" MainAssembly="$(AssemblyName).dll" OutputAssembly="$(AssemblyName).dll" InputAssemblies="@(InputAssemblies)" InternalizeExcludeAssemblies="@(InternalizeExcludeAssemblies)" WorkingDirectory="$(WorkingDirectory)" />
-	</Target>
+		<MakeDir Directories="$(ReleaseTranslatorsFolder);$(ReleaseSampleConfigFolder)" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ReleaseTranslatorsFolder)" />
+		<Copy SourceFiles="@(SampleConfigFiles)" DestinationFiles="@(SampleConfigFiles->'$(ReleaseSampleConfigFolder)%(RecursiveDir)%(Filename)%(Extension)')" />
 
-	<Target Name="PostBuild" AfterTargets="ILRepack" Condition="$(Configuration) == 'Release'">
-		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(PoKGameDir)&quot;" />
-		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(Xyzj2GameDir)&quot;" />
-		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(LoMGameDir)&quot;" />
-
-		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(TargetName)$(TargetExt)&quot; &quot;$(TargetDir)$(BaseFolder)\Release&quot;" />
-		<Exec Command="XCOPY /Y /I &quot;$(TargetDir)$(BaseFolder)\SampleConfig&quot; &quot;$(TargetDir)$(BaseFolder)\Release&quot;" />
+		<MakeDir Directories="$(PoKGameDir);$(Xyzj2GameDir);$(LoMGameDir)" Condition="'$(DeployToGameDirs)' == 'true'" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PoKGameDir)" Condition="'$(DeployToGameDirs)' == 'true'" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Xyzj2GameDir)" Condition="'$(DeployToGameDirs)' == 'true'" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(LoMGameDir)" Condition="'$(DeployToGameDirs)' == 'true'" />
 	</Target>
 
 </Project>

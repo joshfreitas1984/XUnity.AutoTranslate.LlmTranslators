@@ -1,79 +1,160 @@
-﻿# XUnity.AutoTranslator.LlmTranslators
+# XUnity.AutoTranslator.LlmTranslators
 
-A series of LLM Translators that can be used with popular LLMs such as ChatGpt configured with prompts to translate games with XUnity.AutoTranslator. 
+LLM-backed translator endpoints for [XUnity.AutoTranslator](https://github.com/bbepis/XUnity.AutoTranslator).
 
-Current supported plugins include:
-- [OpenAI](https://platform.openai.com/)
-	- Probably the most popular LLM that has the highest quality but is not Free
-- [Ollama Models](https://ollama.com/)
-	- Ollama is a local hosting option for LLMs. You are able to run one or more llms on your local machine of varying size. This option is free but will require you to engineer your prompts dependant on the model and/or language.
+This plugin adds OpenAI-compatible, Ollama, and LM Studio chat-completion translators for games that use XUnity.AutoTranslator. It is designed for prompt-driven game translation, glossary-assisted terminology control, and higher request concurrency than the built-in `Custom` endpoint.
 
-# Why use this instead of the [Custom] endpoint?
+한국어 빌드 및 YAML 작성 예시는 [docs/BUILD_AND_YAML_EXAMPLES.ko.md](docs/BUILD_AND_YAML_EXAMPLES.ko.md)를 참고하세요.
 
-- We run up to 15 translations in parallel (unlike the custom endpoint which is tied to 1)
-- We have removed the spam restriction (which has 1 second by default on custom)
+## Supported Endpoints
 
-# Installation instructions
+| Endpoint | Service ID | Use case |
+| --- | --- | --- |
+| OpenAI | `OpenAiTranslate` | Hosted OpenAI chat-completion models such as `gpt-4o-mini`. |
+| Ollama | `OllamaTranslate` | Local Ollama models served from `http://localhost:11434/api/chat` or another compatible URL. |
+| LM Studio | `LmStudioTranslate` | Local OpenAI-compatible chat-completion servers from LM Studio, usually `http://localhost:1234/v1/chat/completions`. |
 
-1. Download or Build the latest assembly from the Releases
-2. Install [XUnity.AutoTranslator](https://github.com/bbepis/XUnity.AutoTranslator) into your game as normal with either ReiPatcher or BepinEx
-3. Place assembly into Translators folder for your game, you should see the other translators in the folder (eg. CustomTranslate.dll)
-	- If used ReiPatcher: `<GameDir>/<Game name>_ManagedData/Translators` 
-	- If used BepinEx: `<GameDir>/BepinEx/plugins/XUnity.AutoTranslator/Translators` 
+## Why Use This Instead Of `Custom`
 
-# Configuration
+- Runs multiple translations in parallel.
+- Removes the default spam restriction used by `Custom`.
+- Keeps LLM prompts, model parameters, API keys, and glossary data in YAML/text files that can be reused across games.
+- Supports per-game override files for prompts, glossary prompts, and API keys.
+- Supports hosted OpenAI, local Ollama, and local LM Studio workflows.
 
-We use an additional yaml configuration file to make it easier to copy around with multiple games. We also support configuration override files which take precedence over the main file. This is so things like copying and pasting prompts and glossary items becomes easier while in game. It also means we do not mess with the standard Autotranslator INI file.
+## Repository Layout
 
-To configure your LLM you will need to follow the following steps:
+```text
+XUnity.AutoTranslator.LlmTranslators/
+  OpenAiTranslatorEndpoint.cs       OpenAI endpoint implementation
+  OllamaTranslatorEndpoint.cs       Ollama endpoint implementation
+  LmStudioTranslatorEndpoint.cs     LM Studio endpoint implementation
+  Behavior/                         Shared request and response handling
+  Config/                           YAML configuration and glossary models
+  SampleConfig/                     Example OpenAI/Ollama/LM Studio config files
+XUnity.AutoTranslator.LlmTranslators.Tests/
+  BehaviorTests.cs                  Cleanup and request behavior tests
+  ConfigTests.cs                    Configuration loading tests
+  PromptTests.cs                    Prompt evaluation helpers
+libs/                               XUnity.AutoTranslator reference assemblies
+```
 
-1. Either run the game to create the default config or copy the [Sample Configs](./XUnity.AutoTranslator.LlmTranslators/SampleConfig) into the AutoTranslator folder
-	- If used ReiPatcher: `<GameDir>/AutoTranslator`
-	- If used BepinEx: `<GameDir>/BepinEx/config`
-2. Open the config for the LLMTranslator you wish to use
-	- If OpenaI: `OpenAi.Yml`
-	- If a local Olama LLM: `Ollama.Yml`
-3. Update your config with any API keys, custom urls, glossaries and system prompts.
-4. Finally update your AutoTranslator INI file with your translate service
-	- ```
-	  [Service]
-	  Endpoint=OpenAiTranslate
-	  FallbackEndpoint=
-	  ```
-	- If OpenAi: `OpenAiTranslate`
-	- If a local Olama LLM: `OllamaTranslate`
+## Installation
 
-## Global API Key
+1. Download a release build or build the project locally.
+2. Install XUnity.AutoTranslator into your game with ReiPatcher or BepInEx.
+3. Copy `XUnity.AutoTranslator.LlmTranslators.dll` into the game's `Translators` folder:
+   - ReiPatcher: `<GameDir>/<GameName>_ManagedData/Translators`
+   - BepInEx: `<GameDir>/BepInEx/plugins/XUnity.AutoTranslator/Translators`
+4. Copy the sample config files from `XUnity.AutoTranslator.LlmTranslators/SampleConfig` into the AutoTranslator config folder:
+   - ReiPatcher: `<GameDir>/AutoTranslator`
+   - BepInEx: `<GameDir>/BepInEx/config`
+5. Edit the AutoTranslator INI file and select the endpoint:
 
-We also use global environment variables so you can just set your API Key once and never have to think about it again.
+```ini
+[Service]
+Endpoint=OpenAiTranslate
+FallbackEndpoint=
+```
 
-1. Google how to set environment variables on your operating system
-2. Set the following environment variable: `AutoTranslator_API_Key` to the value of your API Key.
+Use `OllamaTranslate` for Ollama or `LmStudioTranslate` for LM Studio.
 
-## Configuration Override Files
+## Configuration
 
-We have seperate files that can be override any config you have loaded in your config file. This makes it easier to publish game specific prompts, glossaries or just make it easier to use multi line prompts without having to worry about YAML formatting.
+Each endpoint uses a YAML file in the AutoTranslator config folder:
 
-These files are:
-  - `OpenAi-SystemPrompt.txt` or `Ollama-SystemPrompt.txt`
-	- Use this file to update your system prompt
-  - `OpenAi-GlossaryPrompt.txt` or `Ollama-GlossaryPrompt.txt`
-	- Use this file to update your glossary prompt
-  - `OpenAi-ApiKey.txt` or `Ollama-ApiKey.txt`
-	- Use this file to update your API Key
+- `OpenAi.yaml`
+- `Ollama.yaml`
+- `LmStudio.yaml`
 
-# Glossary
+Important fields:
 
-The glossary feature scans for text that matches entries in the glossary and allows you to instruct how the LLM will translate that word/term/sentence. This reduces hallucinations and mistranslations significantly. The format for a glossary is as follows:
+| Field | Description |
+| --- | --- |
+| `apiKey` | API key used for `Authorization: Bearer ...` when `apiKeyRequired` is `true`. |
+| `apiKeyRequired` | Set `false` for local services that do not require an API key. |
+| `url` | Chat-completion endpoint URL. |
+| `model` | Model name sent in the request payload. |
+| `modelParams` | Additional model parameters such as `temperature`, `top_p`, or local-model-specific values. |
+| `systemPrompt` | Main translation instruction sent as the system message. |
+| `glossaryPrompt` | Instruction prepended before matching glossary terms. |
+
+Example OpenAI configuration:
+
+```yaml
+apiKey: "Change me"
+apiKeyRequired: true
+url: "https://api.openai.com/v1/chat/completions"
+model: "gpt-4o-mini"
+modelParams:
+  temperature: 0.2
+  top_p: 0.9
+systemPrompt: |
+  Translate Simplified Chinese into English. Output only the translation.
+glossaryPrompt: |
+  # Glossary for Consistent Translations
+  Use the translation for exact matches.
+  ## Terms
+```
+
+## LM Studio
+
+To use LM Studio, start the local server in LM Studio and load the model you want to use for translation. The default LM Studio OpenAI-compatible chat completion URL is:
+
+```yaml
+url: "http://localhost:1234/v1/chat/completions"
+```
+
+Copy `LmStudio.yaml` into your AutoTranslator config folder, then update the `model` value to the model identifier shown by LM Studio:
+
+```yaml
+apiKey: "None"
+apiKeyRequired: false
+url: "http://localhost:1234/v1/chat/completions"
+model: "model-identifier"
+```
+
+Finally, set the translator endpoint in `Config.ini`:
+
+```ini
+[Service]
+Endpoint=LmStudioTranslate
+FallbackEndpoint=
+```
+
+## API Key Options
+
+You can set an API key in either location:
+
+- In the endpoint YAML file through `apiKey`.
+- In an override file named `OpenAi-ApiKey.txt`, `Ollama-ApiKey.txt`, or `LmStudio-ApiKey.txt`.
+
+Keep API key override files out of source control.
+
+## Override Files
+
+Override files live next to the endpoint YAML file and take precedence over YAML values:
+
+| File | Purpose |
+| --- | --- |
+| `OpenAi-SystemPrompt.txt` / `Ollama-SystemPrompt.txt` / `LmStudio-SystemPrompt.txt` | Replaces the configured system prompt. |
+| `OpenAi-GlossaryPrompt.txt` / `Ollama-GlossaryPrompt.txt` / `LmStudio-GlossaryPrompt.txt` | Replaces the configured glossary prompt. |
+| `OpenAi-ApiKey.txt` / `Ollama-ApiKey.txt` / `LmStudio-ApiKey.txt` | Replaces the configured API key. |
+
+These files are useful when maintaining per-game prompts without editing the main YAML file.
+
+## Glossary
+
+Glossary YAML files are named `OpenAi-Glossary.yaml`, `Ollama-Glossary.yaml`, or `LmStudio-Glossary.yaml`. Matching `raw` terms are appended to the prompt for the current source string.
+
+Minimum entry:
 
 ```yaml
 - raw: 舅舅
   result: Uncle
 ```
 
-This is the minimum required for an entry in a glossary. You can also specifically give a seperate glossary prompt to guide your LLM better.
-
-The glossary format supports more options that are mostly there to help translation teams produce more consistent Autotranslator glossaries. The full list is as follows:
+Full entry format:
 
 ```yaml
 - raw: 舅舅
@@ -84,18 +165,50 @@ The glossary format supports more options that are mostly there to help translat
   checkForMistranslation: true
 ```
 
-Please note `transliteration`, `context` do nothing in the plugin.
-Currently `checkForHallucination` and `checkForMistranslation` have not been implemented - stay tuned.
+`transliteration` and `context` are documentation fields for translators. `checkForHallucination` and `checkForMistranslation` are reserved for future validation behavior.
 
-# Fine tuning your prompt
+## Prompt Tuning
 
-Please note the prompt is what actually tells ChatGPT what to translate. Some things that will help:
-- Update the languages eg. Simplified Chinese to English, Japanese to English
-- Ensure you add context to the prompt for the game such as 'Wuxia', 'Sengoku Jidai', 'Xanxia', 'Eroge'. 
-- Make sure you tell it how to translate names whether you want literal translation or keep the original names
+Good results depend heavily on the prompt and model. For game translation, include:
 
-A test project is included with the project. The [PromptTests](./XUnity.AutoTranslator.LlmTranslators.Tests/PromptTests.cs) will let you easily change your prompt based on your model and compare outputs to some ChatGPT4o pretranslated values. These are a good baseline to compare your prompts or other models to, most cases will show you where the model will lose the plot and hallucinate.
+- Source and target languages.
+- Tone and genre context such as wuxia, eroge, fantasy, or historical drama.
+- Name handling rules, including whether to keep names, use romanization, or translate titles.
+- Formatting rules, especially for escaped characters, tags, and line breaks.
+- A short "output only the translation" instruction.
 
-# Packages
+The test project includes `PromptTests` that can be used to compare prompt outputs against example translations.
 
-The assemblies included are the Dev versions of XUnity.AutoTranslator. Feel free to star/fork this repo however you like.
+## Build And Test
+
+Prerequisites:
+
+- .NET SDK that can build the solution.
+- XUnity.AutoTranslator reference assemblies in `libs/`.
+
+Build:
+
+```powershell
+dotnet build XUnity.AutoTranslate.LlmTranslators.sln -c Release
+```
+
+Run non-live tests:
+
+```powershell
+dotnet test XUnity.AutoTranslate.LlmTranslators.sln -c Release --no-build --filter "FullyQualifiedName!~PromptTests"
+```
+
+`PromptTests` are environment-dependent because they can call live OpenAI, Ollama, or LM Studio endpoints.
+
+Release builds merge `YamlDotNet.dll` into the translator assembly through ILRepack and copy the translator DLL plus sample configs into the repository `Release` folder.
+
+## Current Project Notes
+
+- The plugin target framework is `net45` for compatibility with Unity/XUnity.AutoTranslator environments.
+- Local game-directory deployment is opt-in through `DeployToGameDirs=true`.
+- The included `libs/` assemblies are XUnity.AutoTranslator development references used for compilation.
+- This repository includes development references and sample configs, but users should keep private API key override files out of source control.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](./LICENSE).

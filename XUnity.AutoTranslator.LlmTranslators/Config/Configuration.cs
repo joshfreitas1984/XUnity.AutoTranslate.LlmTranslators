@@ -23,19 +23,40 @@ public static class Configuration
 {
     public static string CalculateConfigFolder()
     {
-        //AutoTranslator Configuration details are public so we have to do this work around
-        //Check for ReiPatcher or BepinEx and handle foreign chars       
-        Directory.SetCurrentDirectory($"{Assembly.GetExecutingAssembly().Location}/../../../../");
-        string ReiPatcherFolder = Path.GetFullPath(Path.Combine(".", "AutoTranslator"));
-        string BepinExFolder = Path.GetFullPath(Path.Combine(".", "BepInEx"));
+        var translatorDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        if (string.IsNullOrEmpty(translatorDirectory))
+            throw new InvalidOperationException("Unable to determine the translator directory.");
 
-        string folder;
-        if (Directory.Exists(ReiPatcherFolder))
-            folder = ReiPatcherFolder;
-        else
-            folder = BepinExFolder;
+        return CalculateConfigFolder(translatorDirectory);
+    }
 
-        return folder;
+    public static string CalculateConfigFolder(string translatorDirectory)
+    {
+        if (string.IsNullOrWhiteSpace(translatorDirectory))
+            throw new ArgumentException("A translator directory is required.", nameof(translatorDirectory));
+
+        var directory = new DirectoryInfo(Path.GetFullPath(translatorDirectory));
+        DirectoryInfo? unityDataDirectory = null;
+
+        for (var current = directory; current != null; current = current.Parent)
+        {
+            if (string.Equals(current.Name, "BepInEx", StringComparison.OrdinalIgnoreCase))
+                return Path.Combine(current.FullName, "config");
+
+            if (unityDataDirectory == null &&
+                (current.Name.EndsWith("_Data", StringComparison.OrdinalIgnoreCase) ||
+                 current.Name.EndsWith("_ManagedData", StringComparison.OrdinalIgnoreCase)))
+            {
+                unityDataDirectory = current;
+            }
+        }
+
+        if (unityDataDirectory?.Parent != null)
+            return Path.Combine(unityDataDirectory.Parent.FullName, "AutoTranslator");
+
+        // Preserve the legacy ReiPatcher layout fallback:
+        // <Game>/<Game>_Data/Managed/Translators -> <Game>/AutoTranslator.
+        return Path.GetFullPath(Path.Combine(directory.FullName, "..", "..", "..", "AutoTranslator"));
     }
 
     public static LlmConfig GetConfiguration(string file)
@@ -88,7 +109,7 @@ public static class Configuration
         if (!File.Exists(file))
             return;
 
-        config.SystemPrompt = File.ReadAllText(file, Encoding.UTF8);
+        config.GlossaryPrompt = File.ReadAllText(file, Encoding.UTF8);
     }
 
     public static void LoadApiKey(LlmConfig config, string file)
